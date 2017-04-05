@@ -1,0 +1,42 @@
+{
+  "name": "angular-seo",
+  "description": "Generate sitemap and page seo for angular project",
+  "version": "0.1.0",
+  "homepage": "https://github.com/lenim/angular-seo",
+  "author": {
+    "name": "LeniM",
+    "url": "https://github.com/lenim"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lenim/angular-seo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lenim/angular-seo/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/lenim/angular-seo/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": [
+    "cli",
+    "command line"
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "angular-seo": "./bin/angular-seo"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.8"
+  },
+  "scripts": {
+    "test": "mocha -R test"
+  },
+  "dependencies": {
+    "minimist": "~0.0.8",
+    "verbalize": "~0.1.1"
+  }
+}

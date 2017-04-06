@@ -1,42 +1,43 @@
 {
-  "name": "angular-seo",
-  "description": "Generate sitemap and page seo for angular project",
+  "name": "angularSeo",
   "version": "0.1.0",
-  "homepage": "https://github.com/lenim/angular-seo",
-  "author": {
-    "name": "LeniM",
-    "url": "https://github.com/lenim"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/lenim/angular-seo.git"
-  },
-  "bugs": {
-    "url": "https://github.com/lenim/angular-seo/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/lenim/angular-seo/blob/master/LICENSE-MIT"
-    }
-  ],
-  "keywords": [
-    "cli",
-    "command line"
-  ],
-  "preferGlobal": true,
-  "bin": {
-    "angular-seo": "./bin/angular-seo"
-  },
-  "main": "index.js",
-  "engines": {
-    "node": ">=0.8"
-  },
+  "description": "",
+  "repository": "",
+  "license": "MIT",
   "scripts": {
-    "test": "mocha -R test"
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc --pretty",
+    "test": "npm run build && mocha --compilers ts:ts-node/register --recursive test/**/*-spec.ts",
+    "watch": "npm run build -- --watch",
+    "watch:test": "npm run test -- --watch"
+  },
+  "author": {
+    "name": "Martin Leni",
+    "email": ""
+  },
+  "main": "dist/bin/app.js",
+  "typings": "dist/bin/app.d.ts",
+  "bin": {
+    "angular-seo": "bin/angular-seo"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/commander": "^2.3.31",
+    "@types/mocha": "^2.2.39",
+    "@types/node": "^7.0.5",
+    "@types/sinon": "^1.16.35",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "rimraf": "^2.6.1",
+    "sinon": "^1.17.7",
+    "ts-node": "^2.1.0",
+    "typescript": "^2.2.1"
   },
   "dependencies": {
-    "minimist": "~0.0.8",
-    "verbalize": "~0.1.1"
+    "commander": "^2.9.0"
   }
 }

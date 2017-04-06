@@ -1,38 +1,56 @@
 import * as commander from 'commander';
-import { Writer } from '../writer';
+import {Writer} from '../tools/writer';
+import {Config} from "../config/Config";
 
 export class Write {
 
     private program: commander.IExportedCommand;
     private package: any;
     private writer: Writer;
+    private config: Config;
 
     constructor() {
         this.program = commander;
         this.package = require('../../package.json');
-        this.writer = new Writer();
     }
 
     public initialize() {
         this.program
             .version(this.package.version)
-            .option('-m, --message [value]', 'Say hello!')
+            .option('-b, --build [value]', 'What would you like to build')
             .parse(process.argv);
 
-        if (this.program.message != null) {
+        this.loadConf();
 
-            if (typeof this.program.message !== 'string') {
-                this.writer.write();
-            } else {
-                this.writer.write(this.program.message);
-            }
-
-            process.exit();
+        if (this.program.build === null) {
+            this.buildIndexes();
+            this.buildSiteMap();
         }
 
-        this.program.help();
+        if (this.program.build === 'sitemap') {
+            this.buildSiteMap()
+        } else if (this.program.build === 'indexes') {
+            this.buildIndexes();
+        } else {
+            Writer.error(`${this.program.build} is not something I can build`);
+            this.program.help();
+        }
     }
 
+    protected buildSiteMap() {
+        // @todo all
+        Writer.info('building sitemap');
+    }
+
+    protected buildIndexes() {
+        // @todo all
+        Writer.info('building indexes');
+    }
+
+    private loadConf() {
+        let path = process.cwd();
+        this.config = require(path+'/angular-seo.json');
+    }
 }
 
 let app = new Write();
